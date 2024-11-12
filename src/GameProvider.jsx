@@ -18,7 +18,7 @@ const GameProvider = (props) => {
   const [flaggedCells, setFlaggedCells] = useState(new Set());
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-
+  
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -29,19 +29,17 @@ const GameProvider = (props) => {
 
  
   const calculateBoardDimensions = (difficulty) => {
-    const isMobile = windowWidth < 768;
-    
     switch(difficulty) {
       case 'medium':
         return {
-          width: isMobile ? 12 : 16,
-          height: isMobile ? 20 : 16,
+          width: 16,
+          height: 16,
           mines: 40
         };
       case 'hard':
         return {
-          width: isMobile ? 12 : 30,
-          height: isMobile ? 25 : 16,
+          width: 30,
+          height: 16,
           mines: 99
         };
       case 'easy':
@@ -72,7 +70,7 @@ const GameProvider = (props) => {
     };
   };
 
-
+ 
   const deserializeGameState = (savedState) => {
     if (!savedState) return null;
     
@@ -82,7 +80,7 @@ const GameProvider = (props) => {
     };
   };
 
-
+ 
   const saveGameState = () => {
     if (isGameOver) return;
     const gameState = serializeGameState();
@@ -97,7 +95,7 @@ const GameProvider = (props) => {
     const parsedState = deserializeGameState(JSON.parse(savedState));
     const currentDifficulty = location.pathname.split('/').pop();
     
-  
+    
     if (parsedState.difficulty === currentDifficulty && 
         (new Date().getTime() - parsedState.lastUpdated) < 24 * 60 * 60 * 1000) {
       return parsedState;
@@ -105,10 +103,12 @@ const GameProvider = (props) => {
     return null;
   };
 
+
   const clearSavedGame = () => {
     localStorage.removeItem(STORAGE_KEY);
   };
 
+  
   const calculateAdjacentMines = (row, col, gameState, width, height) => {
     let count = 0;
     const directions = [
@@ -129,6 +129,7 @@ const GameProvider = (props) => {
     return count;
   };
 
+  
   const getAdjacentCells = (row, col) => {
     const directions = [
       [-1, -1], [-1, 0], [-1, 1],
@@ -144,8 +145,9 @@ const GameProvider = (props) => {
       );
   };
 
+ 
   const placeMines = (gameState, width, height, mines, avoidRow = -1, avoidCol = -1) => {
-   
+ 
     if (avoidRow !== -1 && avoidCol !== -1) {
       for(let i = 0; i < height; i++) {
         for(let j = 0; j < width; j++) {
@@ -160,7 +162,7 @@ const GameProvider = (props) => {
       const row = Math.floor(Math.random() * height);
       const col = Math.floor(Math.random() * width);
       
-    
+      
       if ((row === avoidRow && col === avoidCol) || 
           gameState[`${row}-${col}`].containsMine) {
         continue;
@@ -180,6 +182,7 @@ const GameProvider = (props) => {
     }
   };
 
+
   const initializeGame = (difficulty) => {
     const savedState = loadGameState();
     
@@ -196,7 +199,6 @@ const GameProvider = (props) => {
       setFlaggedCells(savedState.flaggedCells);
       return;
     }
-
 
     const { width, height, mines } = calculateBoardDimensions(difficulty);
 
@@ -225,6 +227,7 @@ const GameProvider = (props) => {
     setGameBoardState(gameState);
   };
 
+
   const revealEmptyCells = (row, col, newState, newlyRevealed = new Set()) => {
     const key = `${row}-${col}`;
     
@@ -247,6 +250,7 @@ const GameProvider = (props) => {
     return newlyRevealed;
   };
 
+ 
   const revealSquare = (row, col) => {
     if (isGameOver || gameBoardState[`${row}-${col}`].revealed) return;
 
@@ -275,13 +279,14 @@ const GameProvider = (props) => {
     const newRevealedCount = revealedSquares + newlyRevealed.size;
     setRevealedSquares(newRevealedCount);
 
-  
+    
     if (newRevealedCount === totalEmptySquares) {
       setPlayerWon(true);
       setIsGameOver(true);
       clearSavedGame();
     }
   };
+
 
   const toggleFlag = (row, col) => {
     if (isGameOver) return;
@@ -298,20 +303,21 @@ const GameProvider = (props) => {
     setFlaggedCells(newFlaggedCells);
   };
 
+
   const resetGame = () => {
     clearSavedGame();
     const difficulty = location.pathname.split('/').pop();
     initializeGame(difficulty);
   };
 
- 
+  
   useEffect(() => {
     if (Object.keys(gameBoardState).length > 0) {
       saveGameState();
     }
   }, [gameBoardState, flaggedCells, isGameOver, playerWon]);
 
- 
+  
   useEffect(() => {
     const difficulty = location.pathname.split('/').pop();
     if (difficulty === 'easy' || difficulty === 'medium' || difficulty === 'hard') {
@@ -319,11 +325,10 @@ const GameProvider = (props) => {
     }
   }, [location]);
 
-  
+ 
   useEffect(() => {
     const difficulty = location.pathname.split('/').pop();
     if (difficulty === 'easy' || difficulty === 'medium' || difficulty === 'hard') {
-   
       if (isFirstClick || isGameOver) {
         initializeGame(difficulty);
       }
