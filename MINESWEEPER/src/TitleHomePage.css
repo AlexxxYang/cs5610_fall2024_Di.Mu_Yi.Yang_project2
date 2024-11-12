@@ -1,0 +1,162 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Permanent+Marker&display=swap');
+
+.homepage-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8e6e6;  
+    gap: 20px;
+}
+
+.homepage-title {
+    font-size: 4.5rem;
+    color: #a25e5e; 
+    text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.8),  
+                 6px 6px 0px rgba(162, 94, 94, 0.2);
+    margin-bottom: 40px;
+    font-family: 'Permanent Marker', cursive;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transform: rotate(-2deg);
+    transition: all 0.3s ease;
+}
+
+.homepage-title:hover {
+    text-shadow: 4px 4px 0px rgba(255, 255, 255, 0.8),
+                 8px 8px 0px rgba(162, 94, 94, 0.2);
+}
+
+.link-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.game-link {
+    text-decoration: none;
+    padding: 20px 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: 'Fredoka', sans-serif;
+    color: #8b4343;  
+    background-color: #fff;  
+    border: 3px solid;
+    border-color: #fff #d18686 #d18686 #fff; 
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    min-width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(162, 94, 94, 0.15);  
+}
+
+.game-link:hover {
+    transform: translateY(-2px) scale(1.05);
+    background-color: #ffe8e8;  
+    color: #a25e5e; 
+    border-color: #ffe8e8 #b96868 #b96868 #ffe8e8; 
+    box-shadow: 0 6px 20px rgba(162, 94, 94, 0.25);
+}
+
+.game-link:active {
+    transform: translateY(1px) scale(0.98);
+    background-color: #ffd5d5;
+    box-shadow: 0 2px 10px rgba(162, 94, 94, 0.2);
+}
+
+.rules-link {
+    text-decoration: none;
+    padding: 10px 25px; 
+    font-size: 1rem;     
+    font-weight: 600;
+    font-family: 'Fredoka', sans-serif;
+    color: white; 
+    background-color: #a25e5e;  
+    border: 2px solid;
+    border-color: #fff #e1a3a3 #e1a3a3 #fff;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    min-width: 180px;    
+    max-width: 200px;    
+    width: auto;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(162, 94, 94, 0.12);
+    margin-top: 10px;
+}
+
+.rules-link:hover {
+    transform: translateY(-1px) scale(1.02);
+    background-color: #b96868;
+    border-color: #fff #c17777 #c17777 #fff;
+    box-shadow: 0 4px 12px rgba(162, 94, 94, 0.2);
+}
+
+.rules-link:active {
+    transform: translateY(1px) scale(0.98);
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(162, 94, 94, 0.15);
+}
+
+
+@media screen and (min-width: 1440px) {
+    .homepage-title {
+        font-size: 5.5rem;
+    }
+    
+    .game-link {
+        padding: 25px 60px;
+        font-size: 1.8rem;
+        min-width: 400px;
+    }
+
+    .rules-link {
+        padding: 10px 25px;
+        font-size: 1rem;
+        min-width: 180px;
+        max-width: 200px;
+    }
+}
+
+
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+    .homepage-title {
+        font-size: 4.5rem;
+    }
+    
+    .game-link {
+        padding: 20px 50px;
+        font-size: 1.5rem;
+        min-width: 300px;
+    }
+
+    .rules-link {
+        padding: 10px 25px;
+        font-size: 1rem;
+        min-width: 180px;
+        max-width: 200px;
+    }
+}
+
+
+@media screen and (max-width: 1023px) {
+    .homepage-title {
+        font-size: 4rem;
+    }
+    
+    .game-link {
+        padding: 15px 40px;
+        font-size: 1.3rem;
+        min-width: 250px;
+    }
+
+    .rules-link {
+        padding: 10px 25px;
+        font-size: 1rem;
+        min-width: 180px;
+        max-width: 200px;
+    }
+}
