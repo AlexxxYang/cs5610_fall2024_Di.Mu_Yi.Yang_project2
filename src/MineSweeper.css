@@ -1,211 +1,288 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Permanent+Marker&display=swap');
 
 .minesweeper-container {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(135deg, #fffdfa 0%, #fff8f8 100%);
-  padding: 20px;
-  box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #fffdfa 0%, #fff8f8 100%);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.minesweeper-container.difficulty-hard {
+    padding: 5px 1px;
 }
 
 .game-header {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 20px;
-  text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .game-title h1 {
-  font-family: 'Fredoka', sans-serif;
-  color: #8b4343;
-  font-size: 2rem;
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Fredoka', sans-serif;
+    color: #8b4343;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .game-controls {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
 }
 
 .control-panel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .button-group {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .back-button,
 .reset-button {
-  padding: 8px 20px;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1rem;
-  color: #8b4343;
-  background: #fff;
-  border: 2px solid #d18686;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    padding: 8px 20px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+    color: #8b4343;
+    background: #fff;
+    border: 2px solid #d18686;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .back-button:hover,
 .reset-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background: #fff5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff5f5;
 }
 
 .mine-counter {
-  background: #fff;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1.2rem;
-  color: #8b4343;
-  border: 2px solid #d18686;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    background: #fff;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.2rem;
+    color: #8b4343;
+    border: 2px solid #d18686;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .mine-counter::before {
-  content: "💣";
+    content: "💣";
 }
 
 .board-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 10px auto;
+}
+
+.difficulty-hard .board-container {
+    margin: 5px auto;
+    padding: 0;
+    max-width: none;
 }
 
 .game-board {
-  display: inline-block;
-  background: #e6e6e6;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    background: #e6e6e6;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+}
+
+.difficulty-hard .game-board {
+    width: 100%;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .row {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .game-message {
-  font-family: 'Permanent Marker', cursive;
-  font-size: 2rem;
-  padding: 15px 30px;
-  margin: 20px 0;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: rotate(-2deg);
-  text-align: center;
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    padding: 15px 30px;
+    margin: 20px 0;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: rotate(-2deg);
+    text-align: center;
 }
 
 .win-message {
-  color: #4CAF50;
+    color: #4CAF50;
 }
 
 .game-over-message {
-  color: #f44336;
+    color: #f44336;
 }
 
 .game-instructions {
-  width: 100%;
-  max-width: 600px;
-  text-align: center;
-  font-family: 'Fredoka', sans-serif;
-  color: #8b4343;
-  margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    color: #8b4343;
+    margin-top: 20px;
 }
 
 .game-instructions p {
-  margin: 8px 0;
-  font-size: 0.9rem;
+    margin: 8px 0;
+    font-size: 0.9rem;
 }
 
 .loading {
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1.5rem;
-  color: #8b4343;
-  text-align: center;
-  padding: 40px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    color: #8b4343;
+    text-align: center;
+    padding: 40px;
 }
 
 @media screen and (max-width: 768px) {
-  .minesweeper-container {
-    padding: 10px;
-  }
+    .minesweeper-container {
+        padding: 5px;
+    }
 
-  .game-title h1 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
+    .game-title h1 {
+        margin-bottom: 10px;
+    }
 
-  .game-controls {
-    margin-bottom: 10px;
-  }
+    .game-controls {
+        margin-bottom: 10px;
+    }
 
-  .control-panel {
-    flex-direction: column;
-    gap: 10px;
-  }
+    .control-panel {
+        flex-direction: column;
+        gap: 10px;
+        padding: 8px;
+    }
 
-  .button-group {
-    width: 100%;
-    justify-content: center;
-  }
+    .button-group {
+        width: 100%;
+        justify-content: center;
+    }
 
-  .back-button,
-  .reset-button {
-    padding: 8px 15px;
-    font-size: 0.9rem;
-  }
+    .back-button,
+    .reset-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
 
-  .mine-counter {
-    width: 100%;
-    justify-content: center;
-  }
+    .mine-counter {
+        width: 100%;
+        justify-content: center;
+        font-size: 1rem;
+        padding: 6px 15px;
+    }
 
-  .game-board {
-    padding: 5px;
-    margin-bottom: 20px;
-  }
+    .board-container {
+        margin: 5px auto;
+    }
 
-  .board-container {
-    margin: 10px 0 30px 0;
-  }
+    .difficulty-hard .board-container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
 
-  .game-message {
-    font-size: 1.5rem;
-    padding: 10px 20px;
-    margin: 10px 0;
-  }
+    .game-board {
+        padding: 5px;
+        border-radius: 6px;
+    }
 
-  .game-instructions {
-    font-size: 0.8rem;
-    margin-top: 10px;
-    padding: 0 10px;
-    position: relative;
-    z-index: 1;
-  }
+    .difficulty-hard .game-board {
+        padding: 0;
+        border-radius: 0;
+        width: 100%;
+        margin: 0;
+    }
 
-  .game-instructions p {
-    margin: 5px 0;
-  }
+    .game-message {
+        padding: 10px 20px;
+        margin: 10px 0;
+    }
+
+    .game-instructions {
+        font-size: 0.8rem;
+        margin-top: 10px;
+        padding: 0 10px;
+    }
+
+    .game-instructions p {
+        margin: 5px 0;
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .minesweeper-container {
+        padding: 5px;
+    }
+
+    .minesweeper-container.difficulty-hard {
+        padding: 5px 1px;
+    }
+
+    .game-title h1 {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+    }
+
+    .game-board {
+        padding: 3px;
+    }
+
+    .difficulty-hard .board-container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .difficulty-hard .game-board {
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .back-button,
+    .reset-button {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    .mine-counter {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .game-instructions p {
+        font-size: 0.75rem;
+    }
 }
